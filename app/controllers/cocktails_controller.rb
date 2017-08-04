@@ -30,7 +30,11 @@ class CocktailsController < ApplicationController
   end
 
   def destroy
-    @cocktail.destroy
+    if @cocktail.destroy
+      redirect_to cocktails_path
+    else
+      render :new
+    end
   end
 
   private

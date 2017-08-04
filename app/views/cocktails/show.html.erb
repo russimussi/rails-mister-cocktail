@@ -1,16 +1,25 @@
 <div class="container">
   <h1><%= @cocktail.name %></h1>
 
-  <%= link_to "Create Cocktail", new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
+  <!-- <%= link_to "Create Cocktail", new_cocktail_dose_path(@cocktail), class: "btn btn-success" %> -->
+  <%= link_to 'Delete Cocktail', cocktail_path(@cocktail), method: 'delete', data: { confirm: "Are you sure you want to delete?" }, class: "btn btn-danger" %>
   <h2>How to prepare:</h2>
   <% @cocktail.doses.each do |dose| %>
   <ul>
-    <li><%= "#{dose.description} -- #{dose.ingredient.name}" %></li>
+    <li><%= "#{dose.description} of #{dose.ingredient.name} " %>
+    <%= link_to dose_path(dose), method: 'delete' do %>
+      <i class="fa fa-times" aria-hidden="true"></i>
+    <% end %>
+    </li>
   </ul>
   <% end %>
   <br>
-  <%= link_to 'New dose', new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
+  <%= link_to 'New dose', new_cocktail_dose_path(@cocktail), class: "btn btn-success" %>
   <br>
   <br>
-  <%= link_to 'Back', cocktails_path, class: "btn btn-danger" %>
+  <%= link_to 'Back', cocktails_path, class: "btn btn-primary" %>
 </div>
+
+
+
+<!-- <%#= link_to dose_path(@dose), method: 'delete', data: { confirm: "Are you sure you want to delete?" } %> -->
